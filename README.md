@@ -1,1 +1,2 @@
-# fatch-API-1
+mini project in JS
+fateching API 
