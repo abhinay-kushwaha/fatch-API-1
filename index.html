@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API</title>
+</head>
+<style>
+  *{
+    padding: 0%;
+    margin: 0%;
+  }
+  header{
+background-color: aqua;
+height: 20px;
+display: flex;
+justify-content: space-between;
+padding: 10px;
+align-items: center;
+font-size: x-large;
+font-weight: bolder;
+font-family: 'Times New Roman', Times, serif;
+margin-bottom: 2px;
+  }
+  .menu-bar{
+    display: flex;
+    gap: 10px;
+  }
+  #data>div{
+    box-shadow: pink 0px 0px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+  }
+  #data img{
+ width: 100px;
+ height: 150px;
+  }
+ #data {
+  
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  
+ }
+ #data p{
+  text-align: left;
+ }
+ #data button{
+  background-color: chartreuse;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+ }
+ #data>div>div{
+  gap: 20px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  /* border: 2px solid pink; */
+ }
+ #data>div>span{
+
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+ }
+
+ @media all and (min-width: 0px) and (max-width: 480px) {
+   header{
+    background-color: rgb(60, 204, 91);
+   }
+   #data{
+    display: grid;
+  grid-template-columns: repeat(1,1fr);
+  gap: 20px;
+   }
+ }
+
+ @media all and (min-width: 481px) and (max-width: 700px) {
+   header{
+    background-color: rgb(64, 141, 96);
+   }
+   #data{
+    display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+   }
+ }
+ @media all and (min-width: 701px) and (max-width: 900px) {
+   header{
+    background-color: rgb(54, 78, 105);
+   }
+   #data{
+    display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+   }
+ }
+ @media all and (min-width: 901px) and (max-width: 1200px) {
+   header{
+    background-color: rgb(54, 78, 105);
+   }
+   #data{
+    display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+   }
+ }
+
+  
+</style>
+<body>
+  <header>
+    <div class="logo">Logo</div>
+    <div class="menu-bar">
+      <p class="card">Card-0</p> MenuBar</div>
+  </header>
+  <div id="data"></div>
+  <script>
+ let myUrl = "https://fakestoreapi.com/products";
+ let main = document.getElementById("data")
+
+ fetchApi()
+ function fetchApi () {
+  fetch(myUrl).then((res) => {
+    // console.log(res.json());
+    let data = res.json()
+    data.then((arr) => {
+      display(arr);
+      console.log(arr);
+    })
+    
+  })
+}
+
+ function display(arr) {
+  
+  arr.forEach(function ({title,price,image,description}) {
+   // console.log(el);
+  
+     let div = document.createElement("div");
+
+    let titl = document.createElement("h2");
+    titl.innerText = title
+    
+    let pric = document.createElement("h3");
+    pric.innerText = "$ " + price
+
+    let img = document.createElement("img");
+    img.src = image
+
+    let des = document.createElement("p");
+    des.innerText =  description;
+    
+    let add = document.createElement("button");
+    add.innerText = "Add To Card";
+
+    let all = document.createElement("div")
+    all.append(img, titl, des)
+
+    let addto = document.createElement("span")
+    addto.append(pric,add)
+
+     div.append(all, addto);
+     main.append(div,);
+})
+
+}
+
+
+// let currentcard= 0;
+// document.querySelector('.card').innerText= `Card- ${currentcard}`;
+
+
+ 
+
+
+  </script>
+</body>
+</html>
